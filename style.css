@@ -1,0 +1,103 @@
+:root {
+  --primary: #6A4C9A; /* viola/lilla */
+  --accent: #4FD1C5; /* verde acqua */
+  --bg: #f7f6fb;
+  --text: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 40px;
+}
+header {
+  background: linear-gradient(90deg, var(--primary), #8b6ad6);
+  color: white;
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#logo {
+  width: 56px;
+  height: 56px;
+}
+h1 {
+  margin: 0;
+  font-size: 20px;
+}
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+main {
+  padding: 16px;
+}
+section {
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+button {
+  background: var(--accent);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.95;
+}
+input,
+select {
+  padding: 8px;
+  margin-top: 8px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+#cardsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cardItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #f0eef8;
+}
+.cardMeta {
+  font-size: 12px;
+  color: #666;
+}
+.muted {
+  color: #666;
+  font-size: 13px;
+}
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.05);
+  justify-content: center;
+}
