@@ -1,0 +1,1 @@
+console.log("Pok avviata correttamente!");
