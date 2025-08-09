@@ -7,64 +7,137 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#6A4C9A"/>
-</head>
-<body>
-  <header>
-    <img src="gastly.svg" alt="Pok" id="logo" />
-    <h1>Pok</h1>
-    <p class="subtitle">Cataloga e monitora le tue carte — offline</p>
-  </header>
+  <style>
+    /* Aggiunte per layout catalogo espansioni */
+    body {
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
+      margin: 0; padding: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: #673ab7; color: white; padding: 1rem; text-align: center;
+      display: flex; align-items: center; gap: 10px; justify-content: center;
+    }
+    header img#logo {
+      height: 40px;
+      width: 40px;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      min-height: 0; /* per scrollbar funzionante */
+    }
+    #setsList {
+      width: 220px;
+      background: #f5f5f5;
+      border-right: 1px solid #ccc;
+      overflow-y: auto;
+      padding-top: 10px;
+    }
+    #setsList button {
+      display: block;
+      width: 100%;
+      border: none;
+      background: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      text-align: left;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+      color: #333;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+    #setsList button.active {
+      background: #673ab7;
+      color: white;
+    }
+    #cardsGrid {
+      flex: 1;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+      overflow-y: auto;
+      background: white;
+    }
+    .card {
+      border: 2px solid transparent;
+      border-radius: 8px;
+      background: white;
+      padding: 6px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .card img {
+      max-width: 100%;
+      border-radius: 5px;
+      user-select: none;
+    }
+    .card.owned {
+      border-color: #4caf50;
+      box-shadow: 0 0 10px #4caf50aa;
+    }
+    .card.missing {
+      opacity: 0.35;
+    }
+    .card-name {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      text-align: center;
+      user-select: none;
+    }
 
-  <main>
-    <section id="cameraSection">
-      <h2>Ricerca da fotocamera</h2>
-      <video id="video" autoplay playsinline></video>
-      <div class="controls">
-        <button id="snap">Scatta foto</button>
-        <input id="fileInput" type="file" accept="image/*" capture="environment" />
-      </div>
-      <canvas id="canvas" style="display:none;"></canvas>
-    </section>
-
-    <section id="addCard">
-      <h2>Aggiungi carta</h2>
-      <form id="cardForm">
-        <input id="cardName" placeholder="Nome carta (es. Pikachu)" required />
-        <input id="expansion" placeholder="Espansione (es. Base Set)" required />
-        <select id="language">
-          <option value="IT">Italiano</option>
-          <option value="EN">English</option>
-          <option value="JP">日本語</option>
-        </select>
-        <select id="condition">
-          <option>Mint</option>
-          <option>Near Mint</option>
-          <option>Good</option>
-          <option>Played</option>
-        </select>
-        <button type="submit">Salva carta</button>
-      </form>
-    </section>
-
-    <section id="collection">
-      <h2>La tua collezione</h2>
-      <div id="noCards" class="muted">Nessuna carta salvata.</div>
-      <ul id="cardsList"></ul>
-    </section>
-
-    <section id="values">
-      <h2>Valori simulati</h2>
-      <p class="muted">I valori mostrati sono simulati (es. integrazione marketplace futura)</p>
-      <canvas id="chart" width="320" height="140"></canvas>
-    </section>
-  </main>
-
-  <footer>
-    <button id="export">Esporta JSON</button>
-    <button id="clear">Cancella tutto</button>
-    <p class="muted">Colore: viola/lilla + verde acqua · Nessun login</p>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
-</html>
+    /* Integro le tue sezioni camera, addCard, collection, values */
+    #rightPanel {
+      width: 320px;
+      background: #fff;
+      border-left: 1px solid #ccc;
+      overflow-y: auto;
+      padding: 15px;
+    }
+    #rightPanel section {
+      margin-bottom: 30px;
+    }
+    #rightPanel h2 {
+      margin-top: 0;
+      color: #673ab7;
+    }
+    .muted {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    footer {
+      background: #f0f0f0;
+      padding: 10px 15px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    footer button {
+      margin: 0 5px;
+      background: #673ab7;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    footer button:hover {
+      background: #532d91;
+    }
+    /* Controlli fotocamera */
+    #cameraSection video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    #cameraSection .controls {
