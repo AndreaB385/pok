@@ -1,0 +1,15 @@
+{
+  "name": "Pok — Catalogo Carte Pokémon",
+  "short_name": "Pok",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#6A4C9A",
+  "theme_color": "#6A4C9A",
+  "icons": [
+    {
+      "src": "gastly.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}
