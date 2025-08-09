@@ -1,18 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pok - Catalogo Carte Pokémon</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pok — Catalogo Carte Pokémon</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#6A4C9A"/>
 </head>
 <body>
-    <header>
-        <h1>Pok - Catalogo Carte Pokémon</h1>
-    </header>
-    <main>
-        <p>Benvenuto nella tua app offline per catalogare, cercare e valutare carte Pokémon!</p>
-    </main>
-    <script src="script.js"></script>
+  <header>
+    <img src="gastly.svg" alt="Pok" id="logo" />
+    <h1>Pok</h1>
+    <p class="subtitle">Cataloga e monitora le tue carte — offline</p>
+  </header>
+
+  <main>
+    <section id="cameraSection">
+      <h2>Ricerca da fotocamera</h2>
+      <video id="video" autoplay playsinline></video>
+      <div class="controls">
+        <button id="snap">Scatta foto</button>
+        <input id="fileInput" type="file" accept="image/*" capture="environment" />
+      </div>
+      <canvas id="canvas" style="display:none;"></canvas>
+    </section>
+
+    <section id="addCard">
+      <h2>Aggiungi carta</h2>
+      <form id="cardForm">
+        <input id="cardName" placeholder="Nome carta (es. Pikachu)" required />
+        <input id="expansion" placeholder="Espansione (es. Base Set)" required />
+        <select id="language">
+          <option value="IT">Italiano</option>
+          <option value="EN">English</option>
+          <option value="JP">日本語</option>
+        </select>
+        <select id="condition">
+          <option>Mint</option>
+          <option>Near Mint</option>
+          <option>Good</option>
+          <option>Played</option>
+        </select>
+        <button type="submit">Salva carta</button>
+      </form>
+    </section>
+
+    <section id="collection">
+      <h2>La tua collezione</h2>
+      <div id="noCards" class="muted">Nessuna carta salvata.</div>
+      <ul id="cardsList"></ul>
+    </section>
+
+    <section id="values">
+      <h2>Valori simulati</h2>
+      <p class="muted">I valori mostrati sono simulati (es. integrazione marketplace futura)</p>
+      <canvas id="chart" width="320" height="140"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <button id="export">Esporta JSON</button>
+    <button id="clear">Cancella tutto</button>
+    <p class="muted">Colore: viola/lilla + verde acqua · Nessun login</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
